@@ -1,7 +1,7 @@
 package game;
 
 /**
- *
+ * old try to realization Cells
  *
  */
 

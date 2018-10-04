@@ -1,33 +1,33 @@
 package game;
 
+import game.TypesCells.EmptyCell;
+import game.TypesCells.Wall;
+
 import java.util.ArrayList;
 
 /**
- * class map he storage class cell and have methods to use Map
+ * class map he storage interface OriginalCells and have methods to use Map
  */
 
 public class Map {
 
-    private ArrayList<ArrayList<Cell1>> map = new ArrayList<>();
+    private ArrayList<ArrayList<OriginalCell>> map = new ArrayList<>();
 
     private int height;
     private int width;
-    private Point robot;
-    private int alfa;
-    private Point possitionExit;
 
 
 
-    public Map(int sizeHeight, int sizeWidth) {
-        this.height=sizeHeight;
-        this.width=sizeWidth;
-        generate(sizeHeight, sizeWidth);
+
+    public Map(int height, int width) {
+        this.height = height;
+        this.width = width;
+        generate(height, width);
     }
 
 
-
     /**
-     *  generate empty Map with border
+     * generate empty Map with border
      *
      * @param numHeight
      * @param numWidth
@@ -35,28 +35,26 @@ public class Map {
     private void generate(int numHeight, int numWidth) {
         //add cell in map
         for (int j = 0; numHeight > j; j++) {
-            map.add(new ArrayList<Cell1>());
+            map.add(new ArrayList<OriginalCell>());
 
             for (int i = 0; numWidth > i; i++) {
-                map.get(j).add(new Cell1(false));
+                map.get(j).add(new EmptyCell());
             }
         }
 
         //border
         for (int i = 0; numWidth > i; i++) {
             //up and down border
-            map.get(0).get(i).setWall(true);
-            map.get(numHeight - 1).get(i).setWall(true);
+            map.get(0).set(i, new Wall());
+            map.get(numHeight - 1).set(i, new Wall());
         }
-        for (int i=0; numHeight>i; i++){
+        for (int i = 0; numHeight > i; i++) {
             //left and right border
-            map.get(i).get(0).setWall(true);
-            map.get(i).get(numWidth-1).setWall(true);
+            map.get(i).set(0, new Wall());
+            map.get(i).set(numWidth - 1, new Wall());
         }
 
     }
-
-
 
 
     public int mapSize() {
@@ -71,36 +69,23 @@ public class Map {
         return width;
     }
 
-    public Cell1 getCell(int height, int width) {
+    public OriginalCell getCell(int height, int width) {
         return map.get(height).get(width);
     }
 
-    public void reloadCell(int height, int width, Cell1 cellule) {
-        map.get(height).set(width, cellule);
+    public void reloadCell(int height, int width, OriginalCell cell) {
+        map.get(height).set(width, cell);
     }
 
-    public Point getRobot() {
-        return robot;
+    public void printMap() {
+        for (int j = 0; j < height; j++) {
+            for (int i = 0; i < width; i++) {
+                System.out.print(map.get(j).get(i).getClassName());
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 
-    public void setRobot(Point robot) {
-        this.robot = robot;
-    }
-
-    public int getAlfa() {
-        return alfa;
-    }
-
-    public void setAlfa(int alfa) {
-        this.alfa = alfa;
-    }
-
-    public Point getPossitionExit() {
-        return possitionExit;
-    }
-
-    public void setPossitionExit(Point possitionExit) {
-        this.possitionExit = possitionExit;
-    }
 
 }

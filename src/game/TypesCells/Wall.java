@@ -1,5 +1,6 @@
 package game.TypesCells;
 
+import game.Game;
 import game.Map;
 import game.OriginalCell;
 
@@ -7,8 +8,8 @@ public class Wall implements OriginalCell {
 
     private Boolean canMove;
 
-    Wall(Boolean canMove){
-        this.canMove=canMove;
+    public Wall(){
+        this.canMove=false;
     }
 
 
@@ -21,4 +22,11 @@ public class Wall implements OriginalCell {
     public void update(Map card) {
 
     }
+
+    @Override
+    public String getClassName() {
+        return "Wall";
+    }
+
+
 }
