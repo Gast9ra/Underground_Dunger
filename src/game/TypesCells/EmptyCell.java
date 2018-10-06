@@ -24,7 +24,8 @@ public class EmptyCell implements OriginalCell {
 
     @Override
     public String getClassName() {
-        return "Empty";
+        return "E";
+        //return "Empty";
     }
 
 

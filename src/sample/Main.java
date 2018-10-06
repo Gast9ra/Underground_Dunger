@@ -1,31 +1,43 @@
 package sample;
 
+import game.Game;
+import game.Map;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private Game biz=new Game(new Map(6,6));
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Test regestration");
+        primaryStage.setTitle("Test Network");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+
 
         Scene scene = new Scene(grid, 300, 275);
         primaryStage.setScene(scene);
+        primaryStage.show();
+
+        scene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.UP) {
+                biz.up(0);
+            } else if (e.getCode() == KeyCode.LEFT) {
+                biz.left(0);
+            } else if (e.getCode() == KeyCode.RIGHT) {
+                biz.right(0);
+            } else if (e.getCode() == KeyCode.DOWN) {
+                biz.down(0);
+            }
+
+            biz.drowMap();
+
+        });
 
     }
 

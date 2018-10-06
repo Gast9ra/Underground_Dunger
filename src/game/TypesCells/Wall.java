@@ -25,7 +25,8 @@ public class Wall implements OriginalCell {
 
     @Override
     public String getClassName() {
-        return "Wall";
+        return "W";
+        //return "Wall";
     }
 
 
