@@ -6,19 +6,20 @@ import game.OriginalCell;
 
 public class EmptyCell implements OriginalCell {
 
-    private Boolean canMove;
+    private boolean canMove;
 
-    public EmptyCell(){
-        this.canMove=true;
+
+    public EmptyCell() {
+        this.canMove = true;
     }
 
     @Override
-    public Boolean getCanMove() {
+    public boolean getCanMove() {
         return canMove;
     }
 
     @Override
-    public void update(Map card) {
+    public void update() {
 
     }
 

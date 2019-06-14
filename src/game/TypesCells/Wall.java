@@ -8,18 +8,21 @@ public class Wall implements OriginalCell {
 
     private Boolean canMove;
 
+
+    //private Map map;
+
     public Wall(){
         this.canMove=false;
     }
 
 
     @Override
-    public Boolean getCanMove() {
+    public boolean getCanMove() {
         return canMove;
     }
 
     @Override
-    public void update(Map card) {
+    public void update() {
 
     }
 
