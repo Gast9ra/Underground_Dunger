@@ -1,4 +1,4 @@
-Json for Game:
+Json for Game: port:15666
 
 {
 "json message": type
