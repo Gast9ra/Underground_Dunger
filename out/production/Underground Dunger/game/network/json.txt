@@ -1,0 +1,17 @@
+Json for Game: port:15666
+
+{
+"json message": type
+                    "data"- for map
+                    "command"- for move
+//map
+"colSize": number,
+"lineSize": number,
+"column1":[          column + num
+            "Wall",
+            "Empty"
+            ]
+
+//move
+"command": "up"
+"player": "1"

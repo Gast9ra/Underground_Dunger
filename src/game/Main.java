@@ -4,6 +4,7 @@ import game.TypesCells.Wall;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import game.network.*;
 
 
 import java.io.FileNotFoundException;
@@ -21,9 +22,9 @@ public class Main {
         game.drowMap();
         game.loadMap(m.jsonMap().toJSONString());
         game.drowMap();
-//        game.up(0);
-//        game.down(0);
-//        game.drowMap();
+        game.up(0);
+        game.down(0);
+        game.drowMap();
 
     }
 }

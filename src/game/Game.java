@@ -19,8 +19,8 @@ public class Game {
 
     public Game(Map data) {
         this.map = data;
-        group.add(new Player("1"));
-        group.add(new Player("2", 2, 1));
+//        group.add(new Player("1"));
+//        group.add(new Player("2", 2, 1));
     }
 
     public void setLinkGame(Game linkGame) {
@@ -139,7 +139,12 @@ public class Game {
     }
 
     public void delPlayer(String name){
-
+        for (Player i:group) {
+            if(i.getName().equals(name)){
+                group.remove(i);
+                return;
+            }
+        }
     }
     
 }
