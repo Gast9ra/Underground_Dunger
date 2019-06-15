@@ -74,6 +74,11 @@ public class Server {
     private void process(DatagramPacket packet ) {
         String str = new String(packet.getData());
         System.out.println(str);
+        try {
+            socket.send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args){
