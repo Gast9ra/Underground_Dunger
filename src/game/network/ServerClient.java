@@ -7,14 +7,12 @@ public class ServerClient {
 	private String name;
 	private InetAddress address;
 	private int port;
-	private final int ID;
 	private int attempt = 0;
 	
-	public ServerClient(String name, InetAddress address, int port, int ID) {
+	public ServerClient(String name, InetAddress address, int port) {
 		this.name = name;
 		this.address = address;
 		this.port = port;
-		this.ID = ID;
 	}
 
 	public String getName() {
@@ -47,9 +45,5 @@ public class ServerClient {
 
 	public void setAttempt(int attempt) {
 		this.attempt = attempt;
-	}
-
-	public int getID() {
-		return ID;
 	}
 }

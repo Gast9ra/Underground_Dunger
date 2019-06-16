@@ -40,12 +40,11 @@ public class Client {
     }
 
 
+
+    //final byte[] data
     public void send(String message) {
         if (message.equals("")) return;
-        send(message.getBytes());
-    }
-
-    private void send(final byte[] data) {
+        byte[] data=message.getBytes();
         send = new Thread(new Runnable() {
             public void run() {
                 DatagramPacket packet = new DatagramPacket(data, data.length, ip, port);
