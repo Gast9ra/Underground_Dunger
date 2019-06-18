@@ -1,5 +1,6 @@
 package game.network;
 
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import game.Game;
+import game.Player;
+import game.Point;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -25,14 +29,16 @@ public class Server {
     private Thread receive;
     private boolean running = false;
     private JSONParser parser = new JSONParser();
+    private Game game;
 
-    public Server() {
+    public Server(Game game) {
         try {
             socket = new DatagramSocket(port);
         } catch (SocketException e) {
             e.printStackTrace();
         }
 
+        this.game = game;
 
         serverRun = new Thread(() -> {
             running = true;
@@ -66,25 +72,21 @@ public class Server {
                 }
 
                 try {
-                    String temp=new String(packet.getData());
-                    temp=temp.substring(0,temp.lastIndexOf("}")+1); //because byte mass 1024 and in str mass 1024len
-                    System.out.println(temp);
-                    JSONObject jsonPacket = (JSONObject) parser.parse(temp); //parse json
+                    String message = new String(packet.getData());
+                    //because byte mass 1024 and in str mass 1024len
+                    message = message.substring(0, message.lastIndexOf("}") + 1);
+                    System.out.println(message);
+                    JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
 
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {
                             case "connect":
                                 addClient(new ServerClient((String) jsonPacket.get("name"),
                                         packet.getAddress(), packet.getPort()));
-
-                                break;
-
-                            case "data":
-
                                 break;
 
                             case "command":
-
+                                sendCommand(jsonPacket);
                                 break;
 
                             default:
@@ -123,6 +125,16 @@ public class Server {
             }
         }
         clients.add(data);
+        Point startPoint = game.getStartPosition();
+
+        if (!game.addPlayerInGroup(new Player(data.getName(),
+                startPoint.getX(), startPoint.getY()))) {
+
+            game.delPlayer(data.getName());
+            game.addPlayerInGroup(new Player(data.getName(),
+                    startPoint.getX(), startPoint.getY()));
+        }
+
         JSONObject textSend = new JSONObject();
         textSend.put("json message", "connect");
         textSend.put("status", "1");
@@ -132,7 +144,7 @@ public class Server {
 
     private void send(ServerClient client, JSONObject massage) {
         new Thread(() -> {
-            byte[] temp = massage.toJSONString().getBytes();
+            final byte[] temp = massage.toJSONString().getBytes();
             DatagramPacket packet = new DatagramPacket(temp, temp.length, client.getAddress(), client.getPort());
             try {
                 socket.send(packet);
@@ -142,8 +154,23 @@ public class Server {
         }).start();
     }
 
+    private void sendCommand(JSONObject sendData){
+        new Thread(() -> {
+            final String name= (String) sendData.get("player");
+            for (ServerClient i : clients) {
+                if(!i.getName().equals(name))
+                    send(i,sendData);
+            }
+
+        }).start();
+    }
+
+    public void stopServer(){
+        this.running=false;
+    }
+
     public static void main(String[] args) {
-        new Server();
+         new Server(new Game());
     }
 
 }

@@ -1,6 +1,6 @@
 package game;
 
-class Point {
+public class Point {
     private int x;
     private int y;
 
@@ -9,11 +9,11 @@ class Point {
         this.y = Y;
     }
 
-    int getX() {
+    public int getX() {
         return x;
     }
 
-    int getY() {
+    public int getY() {
         return y;
     }
 

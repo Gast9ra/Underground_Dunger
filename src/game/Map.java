@@ -90,6 +90,7 @@ public class Map {
     public JSONObject jsonMap() {
         JSONObject result = new JSONObject();
         result.put("json-message","data");
+        result.put("type","map");
         result.put("height", height);
         result.put("width", width);
         for (int j = 0; j < height; j++) {

@@ -5,13 +5,19 @@ Json for Game: port:15666
                     "data"- for map
                     "command"- for move
                     "connect"- start connect
+                    "syn"- synchronize packet
 //map data message
+"type"://"map" //"group"
+//type map
 "colSize": number,
 "lineSize": number,
 "column1":[          column + num
             "Wall",
             "Empty"
-            ]
+            ],
+"startPos": "X Y",
+//type group
+
 
 //move command message
 "command": "up"
@@ -20,3 +26,7 @@ Json for Game: port:15666
 //connect message
 "name": str name //to server
 "status": "1" or "0" //to client
+
+//syn
+"player": name
+"step": number

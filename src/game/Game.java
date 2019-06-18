@@ -15,12 +15,21 @@ public class Game {
     private Game linkGame=null;
     private Map map;
     private ArrayList<Player> group = new ArrayList<Player>();
+    private Point startPosition=new Point(0,0);
 
 
-    public Game(Map data) {
-        this.map = data;
+    public Game(Map map) {
+        this.map = map;
 //        group.add(new Player("1"));
 //        group.add(new Player("2", 2, 1));
+    }
+
+    public Game(){
+        this.map=new Map(6,6);
+    }
+
+    public Game(String map){
+        loadMap(map);
     }
 
     public void setLinkGame(Game linkGame) {
@@ -88,7 +97,9 @@ public class Game {
     }
 
     public JSONObject mapInJSON() {
-        return map.jsonMap();
+        JSONObject result=map.jsonMap();
+        result.put("startPos",startPosition.getX()+" "+startPosition.getY());
+        return result;
     }
 
     public void loadMap(String json) {
@@ -146,5 +157,17 @@ public class Game {
             }
         }
     }
-    
+
+    public ArrayList<Player> getGroup() {
+        return group;
+    }
+
+    public Point getStartPosition() {
+        return startPosition;
+    }
+
+    public void setStartPosition(Point startPosition) {
+        this.startPosition.setX(startPosition.getX());
+        this.startPosition.setY(startPosition.getY());
+    }
 }

@@ -1,5 +1,10 @@
 package game.network;
 
+import game.Game;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.IOException;
 import java.net.*;
 
@@ -7,12 +12,17 @@ public class Client {
 
     private DatagramSocket socket = null;
     private InetAddress ip = null;
-    private Thread send;
-    private final int port=15666;
+    private final int port = 15666;
+    private Game gameCl;
+    private boolean running = false;
+    private JSONParser parser = new JSONParser();
 
 
-    public Client(){
-
+    public Client(String address) {
+        this.running = true;
+        if (openConnection(address)) {
+            receive();
+        }
     }
 
     public boolean openConnection(String address) {
@@ -27,25 +37,40 @@ public class Client {
     }
 
 
-    public String receive() {
-        byte[] data = new byte[1024];
-        DatagramPacket packet = new DatagramPacket(data, data.length);
-        try {
-            socket.receive(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String message = new String(packet.getData());
-        return message;
-    }
+    public void receive() {
+        Runnable runnable = () -> {
+            while (running) {
+                byte[] data = new byte[1024];
+                DatagramPacket packet = new DatagramPacket(data, data.length);
+                try {
+                    socket.receive(packet);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
+                try {
+                    String message = new String(packet.getData());
+                    //because byte mass 1024 and in str mass 1024len
+                    message = message.substring(0, message.lastIndexOf("}") + 1);
+                    JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
+                    
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread receive = new Thread(runnable, "receive");
+        receive.start();
+    }
 
 
     //final byte[] data
     public void send(String message) {
         if (message.equals("")) return;
-        byte[] data=message.getBytes();
-        send = new Thread(new Runnable() {
+        final byte[] data = message.getBytes();
+        Thread send = new Thread(new Runnable() {
             public void run() {
                 DatagramPacket packet = new DatagramPacket(data, data.length, ip, port);
                 try {
@@ -56,6 +81,10 @@ public class Client {
             }
         });
         send.start();
+    }
+
+    public void stop() {
+        this.running = false;
     }
 
 
