@@ -158,6 +158,15 @@ public class Game {
         }
     }
 
+    public void delAllwhithout(String name){
+        for (Player i : group) {
+            if (!i.getName().equals(name)) {
+                group.remove(i);
+            }
+        }
+        System.gc();
+    }
+
     public ArrayList<Player> getGroup() {
         return group;
     }
@@ -171,7 +180,7 @@ public class Game {
         this.startPosition.setY(startPosition.getY());
     }
 
-    public int numPlayerInGraoup(String name) {
+    public int numPlayerInGroup(String name) {
         int result =0;
         for (int i = 0; i < group.size(); i++) {
             if (group.get(i).getName().equals(name)) {

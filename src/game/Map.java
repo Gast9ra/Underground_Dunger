@@ -86,7 +86,9 @@ public class Map {
         }
     }
 
-
+    /**
+     * At the time of this writing, it was not known how to make a json array key value
+     */
     public JSONObject jsonMap() {
         JSONObject result = new JSONObject();
         result.put("json-message","data");

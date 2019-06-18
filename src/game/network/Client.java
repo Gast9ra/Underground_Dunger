@@ -1,27 +1,31 @@
 package game.network;
 
 import game.Game;
+import game.Player;
+import game.Point;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 
 public class Client {
 
     private DatagramSocket socket = null;
     private InetAddress ip = null;
     private final int port = 15666;
-    private Game gameCl;
-    private boolean running=false;
-    private boolean connect=false;
-    private String name;
+    private Game game;
+    private boolean running = false;
+    private boolean connect = false;
+    private Player player;
     private JSONParser parser = new JSONParser();
 
 
-    public Client(String address,String name) {
-        this.name=name;
+    public Client(String address, String name) {
+        this.player = new Player(name);
         if (openConnection(address)) {
             this.running = true;
             receive();
@@ -33,9 +37,9 @@ public class Client {
             socket = new DatagramSocket();
             ip = InetAddress.getByName(address);
             //send connect packet
-            JSONObject message=new JSONObject();
-            message.put("json message","connect");
-            message.put("name",name);
+            JSONObject message = new JSONObject();
+            message.put("json message", "connect");
+            message.put("name", player.getName());
             send(message.toJSONString());
         } catch (SocketException | UnknownHostException e) {
             e.printStackTrace();
@@ -45,7 +49,7 @@ public class Client {
     }
 
 
-    public void receive() {
+    private void receive() {
         Runnable runnable = () -> {
             while (running) {
                 byte[] data = new byte[1024];
@@ -64,41 +68,48 @@ public class Client {
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {
                             case "connect":
-                                if("1".equals(jsonPacket.get("status"))) connect=true;
+                                if ("1".equals(jsonPacket.get("status"))) connect = true;
                                 else {
                                     System.out.println("not connect");
                                 }
                                 break;
 
                             case "command":
-                                int index=0;
-                                switch ((String)jsonPacket.get("command")){
+                                int index;
+                                switch ((String) jsonPacket.get("command")) {
                                     case "up":
                                         //index in group and check
-                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
-                                        if(index>=0) gameCl.up(index);
+                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
+                                        if (index >= 0) game.up(index);
                                         break;
                                     case "left":
                                         //index in group and check
-                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
-                                        if(index>=0) gameCl.left(index);
+                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
+                                        if (index >= 0) game.left(index);
                                         break;
                                     case "down":
                                         //index in group and check
-                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
-                                        if(index>=0) gameCl.down(index);
+                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
+                                        if (index >= 0) game.down(index);
                                         break;
                                     case "right":
                                         //index in group and check
-                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
-                                        if(index>=0) gameCl.right(index);
+                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
+                                        if (index >= 0) game.right(index);
                                         break;
                                 }
 
                                 break;
 
                             case "data":
-                                gameCl.loadMap(jsonPacket.toJSONString());
+                                String type = (String) jsonPacket.get("type");
+                                if ("map".equals(type))
+                                    game.loadMap(jsonPacket.toJSONString());
+
+                                if ("group".equals(type)) {
+                                    addGroupJson(jsonPacket);
+                                }
+
                                 break;
 
                             default:
@@ -140,5 +151,23 @@ public class Client {
 
     public boolean isConnect() {
         return connect;
+    }
+
+    //need test
+    private void addGroupJson(JSONObject data) {
+        game.delAllwhithout(player.getName());
+        JSONArray group = (JSONArray) data.get("group");
+        try {
+            for (Object o : group) {
+                String name = (String) ((JSONObject) o).get("name");
+                String[] ordinate = ((String) ((JSONObject) o).get("pos")).split(" ");
+                if (name != null && ordinate.length == 2) {
+                    game.addPlayerInGroup(new Player(name,new Point(Integer.parseInt(ordinate[0])
+                            ,Integer.parseInt(ordinate[1]))));
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+
     }
 }

@@ -18,6 +18,11 @@ public class Player {
         this.name = name;
     }
 
+    public Player(String name, Point location){
+        this.name=name;
+        this.location=location;
+    }
+
 
     public Boolean playerThisPoint(int x, int y) {
         return location.getX() == x & location.getY() == y;
