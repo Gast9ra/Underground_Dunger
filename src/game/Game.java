@@ -12,10 +12,10 @@ import java.util.ArrayList;
 public class Game {
 
     //link on this class for event
-    private Game linkGame=null;
+    private Game linkGame = null;
     private Map map;
     private ArrayList<Player> group = new ArrayList<Player>();
-    private Point startPosition=new Point(0,0);
+    private Point startPosition = new Point(0, 0);
 
 
     public Game(Map map) {
@@ -24,11 +24,11 @@ public class Game {
 //        group.add(new Player("2", 2, 1));
     }
 
-    public Game(){
-        this.map=new Map(6,6);
+    public Game() {
+        this.map = new Map(6, 6);
     }
 
-    public Game(String map){
+    public Game(String map) {
         loadMap(map);
     }
 
@@ -53,28 +53,28 @@ public class Game {
 
 
     public void up(int numberPlayer) {
-        if (numberPlayer > group.size() - 1) throw new ArrayIndexOutOfBoundsException("Player not found");
+        if (numberPlayer > group.size() - 1) return;
         if (map.getCell(group.get(numberPlayer).getLocation().getX()
                 , group.get(numberPlayer).getLocation().getY() - 1).getCanMove())
             group.get(numberPlayer).addOrdinate(0, -1);
     }
 
     public void down(int numberPlayer) {
-        if (numberPlayer > group.size() - 1) throw new ArrayIndexOutOfBoundsException("Player not found");
+        if (numberPlayer > group.size() - 1) return;
         if (map.getCell(group.get(numberPlayer).getLocation().getX()
                 , group.get(numberPlayer).getLocation().getY() + 1).getCanMove())
             group.get(numberPlayer).addOrdinate(0, 1);
     }
 
     public void left(int numberPlayer) {
-        if (numberPlayer > group.size() - 1) throw new ArrayIndexOutOfBoundsException("Player not found");
+        if (numberPlayer > group.size() - 1) return;
         if (map.getCell(group.get(numberPlayer).getLocation().getX() - 1
                 , group.get(numberPlayer).getLocation().getY()).getCanMove())
             group.get(numberPlayer).addOrdinate(-1, 0);
     }
 
     public void right(int numberPlayer) {
-        if (numberPlayer > group.size() - 1) throw new ArrayIndexOutOfBoundsException("Player not found");
+        if (numberPlayer > group.size() - 1) return;
         if (map.getCell(group.get(numberPlayer).getLocation().getX() + 1
                 , group.get(numberPlayer).getLocation().getY()).getCanMove())
             group.get(numberPlayer).addOrdinate(1, 0);
@@ -97,8 +97,8 @@ public class Game {
     }
 
     public JSONObject mapInJSON() {
-        JSONObject result=map.jsonMap();
-        result.put("startPos",startPosition.getX()+" "+startPosition.getY());
+        JSONObject result = map.jsonMap();
+        result.put("startPos", startPosition.getX() + " " + startPosition.getY());
         return result;
     }
 
@@ -136,11 +136,11 @@ public class Game {
 
     }
 
-    public boolean addPlayerInGroup(Player newPlayer){
-        String name=newPlayer.getName();
+    public boolean addPlayerInGroup(Player newPlayer) {
+        String name = newPlayer.getName();
 
-        for (Player i:group) {
-            if(i.getName().equals(name)){
+        for (Player i : group) {
+            if (i.getName().equals(name)) {
                 return false;
             }
         }
@@ -149,9 +149,9 @@ public class Game {
         return true;
     }
 
-    public void delPlayer(String name){
-        for (Player i:group) {
-            if(i.getName().equals(name)){
+    public void delPlayer(String name) {
+        for (Player i : group) {
+            if (i.getName().equals(name)) {
                 group.remove(i);
                 return;
             }
@@ -169,5 +169,16 @@ public class Game {
     public void setStartPosition(Point startPosition) {
         this.startPosition.setX(startPosition.getX());
         this.startPosition.setY(startPosition.getY());
+    }
+
+    public int numPlayerInGraoup(String name) {
+        int result =0;
+        for (int i = 0; i < group.size(); i++) {
+            if (group.get(i).getName().equals(name)) {
+                result = i;
+                return result;
+            }
+        }
+        return -1;
     }
 }

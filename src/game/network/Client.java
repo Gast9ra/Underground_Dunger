@@ -14,13 +14,16 @@ public class Client {
     private InetAddress ip = null;
     private final int port = 15666;
     private Game gameCl;
-    private boolean running = false;
+    private boolean running=false;
+    private boolean connect=false;
+    private String name;
     private JSONParser parser = new JSONParser();
 
 
-    public Client(String address) {
-        this.running = true;
+    public Client(String address,String name) {
+        this.name=name;
         if (openConnection(address)) {
+            this.running = true;
             receive();
         }
     }
@@ -29,6 +32,11 @@ public class Client {
         try {
             socket = new DatagramSocket();
             ip = InetAddress.getByName(address);
+            //send connect packet
+            JSONObject message=new JSONObject();
+            message.put("json message","connect");
+            message.put("name",name);
+            send(message.toJSONString());
         } catch (SocketException | UnknownHostException e) {
             e.printStackTrace();
             return false;
@@ -53,7 +61,49 @@ public class Client {
                     //because byte mass 1024 and in str mass 1024len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
-                    
+                    if (jsonPacket != null)
+                        switch ((String) jsonPacket.get("json message")) {
+                            case "connect":
+                                if("1".equals(jsonPacket.get("status"))) connect=true;
+                                else {
+                                    System.out.println("not connect");
+                                }
+                                break;
+
+                            case "command":
+                                int index=0;
+                                switch ((String)jsonPacket.get("command")){
+                                    case "up":
+                                        //index in group and check
+                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
+                                        if(index>=0) gameCl.up(index);
+                                        break;
+                                    case "left":
+                                        //index in group and check
+                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
+                                        if(index>=0) gameCl.left(index);
+                                        break;
+                                    case "down":
+                                        //index in group and check
+                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
+                                        if(index>=0) gameCl.down(index);
+                                        break;
+                                    case "right":
+                                        //index in group and check
+                                         index=gameCl.numPlayerInGraoup((String) jsonPacket.get("player"));
+                                        if(index>=0) gameCl.right(index);
+                                        break;
+                                }
+
+                                break;
+
+                            case "data":
+                                gameCl.loadMap(jsonPacket.toJSONString());
+                                break;
+
+                            default:
+                                break;
+                        }
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -88,4 +138,7 @@ public class Client {
     }
 
 
+    public boolean isConnect() {
+        return connect;
+    }
 }
