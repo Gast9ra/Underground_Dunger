@@ -104,13 +104,13 @@ public class Game {
 
     public void loadMap(String json) {
         try {
-            JSONObject data = (JSONObject) new JSONParser().parse(json);
-            if (data.get("json-message").equals("data")) {
-                int height = Integer.parseInt(data.get("height").toString());
-                Map result = new Map(height, Integer.parseInt(data.get("width").toString()));
+            JSONObject map = (JSONObject) new JSONParser().parse(json);
+            if (map.get("json-message").equals("data")) {
+                int height = Integer.parseInt(map.get("height").toString());
+                Map result = new Map(height, Integer.parseInt(map.get("width").toString()));
 
                 for (int j = 0; j < height; j++) {
-                    JSONArray column = (JSONArray) data.get("column" + j);
+                    JSONArray column = (JSONArray) map.get("column" + j);
                     for (int i = 0; i < column.size(); i++) {
 
                         switch ((String) column.get(i)) {
@@ -125,12 +125,15 @@ public class Game {
                     }
                 }
 
-                map = result;
+                String[] ordinate = ((String) map.get("startPos")).split(" ");
+                setStartPosition(new Point(Integer.parseInt(ordinate[0])
+                        ,Integer.parseInt(ordinate[1])));
+                this.map = result;
 //                System.gc();
             }
 
 
-        } catch (ParseException e) {
+        } catch (NullPointerException | ParseException e) {
             System.out.println("Bad command");
         }
 
@@ -175,7 +178,7 @@ public class Game {
         return startPosition;
     }
 
-    public void setStartPosition(Point startPosition) {
+     public void setStartPosition(Point startPosition) {
         this.startPosition.setX(startPosition.getX());
         this.startPosition.setY(startPosition.getY());
     }
@@ -189,5 +192,38 @@ public class Game {
             }
         }
         return -1;
+    }
+
+    public void acceptComand(JSONObject command){
+        int index;
+        switch ((String) command.get("command")) {
+            case "up":
+                //index in group and check
+                index = numPlayerInGroup((String) command.get("player"));
+                if (index >= 0) up(index);
+                break;
+            case "left":
+                //index in group and check
+                index = numPlayerInGroup((String) command.get("player"));
+                if (index >= 0) left(index);
+                break;
+            case "down":
+                //index in group and check
+                index = numPlayerInGroup((String) command.get("player"));
+                if (index >= 0) down(index);
+                break;
+            case "right":
+                //index in group and check
+                index = numPlayerInGroup((String) command.get("player"));
+                if (index >= 0) right(index);
+                break;
+        }
+    }
+
+    public JSONObject groupJson(){
+        JSONObject result=new JSONObject();
+        
+
+        return result;
     }
 }

@@ -4,10 +4,9 @@ package game.network;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import game.Game;
@@ -89,7 +88,11 @@ public class Server {
                                 sendCommand(jsonPacket);
                                 break;
 
-                            default:
+                            case "request":
+                                if("map".equals(jsonPacket.get("type")))
+                                    sendToIP(packet.getAddress(),game.mapInJSON());
+
+
                                 break;
                         }
 
@@ -142,9 +145,18 @@ public class Server {
 
     }
 
-    private void send(ServerClient client, JSONObject massage) {
+    private void sendToIP(InetAddress address, JSONObject message){
+        for (ServerClient o:clients) {
+            if(o.getAddress().equals(address)){
+                send(o,message);
+                return;
+            }
+        }
+    }
+
+    private void send(ServerClient client, JSONObject message) {
         new Thread(() -> {
-            final byte[] temp = massage.toJSONString().getBytes();
+            final byte[] temp = message.toJSONString().getBytes();
             DatagramPacket packet = new DatagramPacket(temp, temp.length, client.getAddress(), client.getPort());
             try {
                 socket.send(packet);
@@ -156,6 +168,7 @@ public class Server {
 
     private void sendCommand(JSONObject sendData){
         new Thread(() -> {
+            game.acceptComand(sendData);
             final String name= (String) sendData.get("player");
             for (ServerClient i : clients) {
                 if(!i.getName().equals(name))

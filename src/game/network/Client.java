@@ -75,29 +75,7 @@ public class Client {
                                 break;
 
                             case "command":
-                                int index;
-                                switch ((String) jsonPacket.get("command")) {
-                                    case "up":
-                                        //index in group and check
-                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
-                                        if (index >= 0) game.up(index);
-                                        break;
-                                    case "left":
-                                        //index in group and check
-                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
-                                        if (index >= 0) game.left(index);
-                                        break;
-                                    case "down":
-                                        //index in group and check
-                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
-                                        if (index >= 0) game.down(index);
-                                        break;
-                                    case "right":
-                                        //index in group and check
-                                        index = game.numPlayerInGroup((String) jsonPacket.get("player"));
-                                        if (index >= 0) game.right(index);
-                                        break;
-                                }
+                                game.acceptComand(jsonPacket);
 
                                 break;
 
