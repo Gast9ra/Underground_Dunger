@@ -81,6 +81,7 @@ public class Game {
     }
 
     public void drowMap() {
+        if(map==null) return;
         for (int j = 0; j < map.getHeight(); j++) {
             for (int i = 0; i < map.getWidth(); i++) {
                 for (Player pl : group) {
@@ -105,7 +106,7 @@ public class Game {
     public void loadMap(String json) {
         try {
             JSONObject map = (JSONObject) new JSONParser().parse(json);
-            if (map.get("json-message").equals("data")) {
+            if (map.get("json message").equals("data")) {
                 int height = Integer.parseInt(map.get("height").toString());
                 Map result = new Map(height, Integer.parseInt(map.get("width").toString()));
 
@@ -135,6 +136,7 @@ public class Game {
 
         } catch (NullPointerException | ParseException e) {
             System.out.println("Bad command");
+            e.printStackTrace();
         }
 
     }

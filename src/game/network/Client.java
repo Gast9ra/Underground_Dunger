@@ -28,6 +28,7 @@ public class Client {
 
     public Client(String address, String name) {
         this.player = new Player(name);
+        this.game=new Game();
         if (openConnection(address)) {
             this.running = true;
             receive();
@@ -53,6 +54,7 @@ public class Client {
 
     private void receive() {
         Runnable runnable = () -> {
+            int step=0; //debug
             while (running) {
                 byte[] data = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(data, data.length);
@@ -66,6 +68,7 @@ public class Client {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
+                    step++;
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {
@@ -96,8 +99,9 @@ public class Client {
                                 break;
                         }
 
-                } catch (ParseException e) {
+                } catch (NullPointerException|ParseException e) {
                     e.printStackTrace();
+                    System.out.println("json not right");
                 }
             }
         };
@@ -157,5 +161,9 @@ public class Client {
 
     public void requestGroup(){
         send(requestGroup);
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

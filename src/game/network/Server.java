@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.Game;
+import game.Map;
 import game.Player;
 import game.Point;
 import org.json.simple.JSONObject;
@@ -184,7 +185,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-         new Server(new Game());
+         new Server(new Game(new Map(8,8)));
     }
 
 }
