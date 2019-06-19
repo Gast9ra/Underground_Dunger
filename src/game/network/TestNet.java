@@ -32,7 +32,10 @@ public class TestNet {
         g.add(q);
         a.put("player",g);
         System.out.println(a.toJSONString());
-
+        JSONObject p=new JSONObject();
+        p.put("json message","request");
+        p.put("type","group");
+        System.out.println(p.toJSONString());
     }
 
 }

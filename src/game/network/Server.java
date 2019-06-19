@@ -91,7 +91,8 @@ public class Server {
                             case "request":
                                 if("map".equals(jsonPacket.get("type")))
                                     sendToIP(packet.getAddress(),game.mapInJSON());
-
+                                if("group".equals(jsonPacket.get("type")))
+                                    sendToIP(packet.getAddress(),game.groupJson());
 
                                 break;
                         }

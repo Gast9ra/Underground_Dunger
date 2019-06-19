@@ -22,6 +22,8 @@ public class Client {
     private boolean connect = false;
     private Player player;
     private JSONParser parser = new JSONParser();
+    private final String requstMap="{\"json message\":\"request\",\"type\":\"map\"}";
+    private final String requestGroup="{\"json message\":\"request\",\"type\":\"group\"}";
 
 
     public Client(String address, String name) {
@@ -147,5 +149,13 @@ public class Client {
         } catch (NullPointerException e) {
         }
 
+    }
+
+    public void requestMap(){
+        send(requstMap);
+    }
+
+    public void requestGroup(){
+        send(requestGroup);
     }
 }

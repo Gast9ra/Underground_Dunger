@@ -222,8 +222,15 @@ public class Game {
 
     public JSONObject groupJson(){
         JSONObject result=new JSONObject();
-        
-
+        JSONArray playerGroup=new JSONArray();
+        result.put("type","group");
+        for (Player o:group) {
+            JSONObject player=new JSONObject();
+            player.put("name",o.getName());
+            player.put("pos",o.getLocation().getX()+" "+o.getLocation().getY());
+            playerGroup.add(player);
+        }
+        result.put("group",playerGroup);
         return result;
     }
 }
