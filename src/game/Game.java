@@ -196,30 +196,35 @@ public class Game {
         return -1;
     }
 
-    public void acceptComand(JSONObject command){
+    public boolean acceptComand(JSONObject command){
         int index;
         switch ((String) command.get("command")) {
             case "up":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) up(index);
-                break;
+                return true;
+
             case "left":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) left(index);
-                break;
+                return true;
+
             case "down":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) down(index);
-                break;
+                return true;
+
             case "right":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) right(index);
-                break;
+                return true;
+
         }
+        return false;
     }
 
     public JSONObject groupJson(){

@@ -30,6 +30,8 @@ public class Server {
     private boolean running = false;
     private JSONParser parser = new JSONParser();
     private Game game;
+    private int step = 0;
+    private final String syncRequest = "{\"json message\":\"syn\",\"type\":\"request\"}";
 
     public Server(Game game) {
         try {
@@ -45,6 +47,7 @@ public class Server {
             System.out.println("Server started");
             manage();
             receive();
+            synchronization();
         }, "serverRun");
 
         serverRun.start();
@@ -73,7 +76,7 @@ public class Server {
 
                 try {
                     String message = new String(packet.getData());
-                    //because byte mass 1024 and in str mass 1024len
+                    //because byte mass 1024 and in str mass 1024 len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
                     System.out.println(message);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
@@ -90,11 +93,20 @@ public class Server {
                                 break;
 
                             case "request":
-                                if("map".equals(jsonPacket.get("type")))
-                                    sendToIP(packet.getAddress(),game.mapInJSON());
-                                if("group".equals(jsonPacket.get("type")))
-                                    sendToIP(packet.getAddress(),game.groupJson());
+                                if ("map".equals(jsonPacket.get("type")))
+                                    sendToIP(packet.getAddress(), game.mapInJSON());
+                                if ("group".equals(jsonPacket.get("type")))
+                                    sendToIP(packet.getAddress(), game.groupJson());
 
+                                break;
+
+                            case "syn":
+                                if ("answer".equals(jsonPacket.get("type"))) {
+                                   if(Integer.parseInt(jsonPacket.get("step").toString()) == step);
+                                   else {
+                                       sendToIP(packet.getAddress(), game.mapInJSON());
+                                   }
+                                }
                                 break;
                         }
 
@@ -147,10 +159,10 @@ public class Server {
 
     }
 
-    private void sendToIP(InetAddress address, JSONObject message){
-        for (ServerClient o:clients) {
-            if(o.getAddress().equals(address)){
-                send(o,message);
+    private void sendToIP(InetAddress address, JSONObject message) {
+        for (ServerClient o : clients) {
+            if (o.getAddress().equals(address)) {
+                send(o, message);
                 return;
             }
         }
@@ -168,24 +180,54 @@ public class Server {
         }).start();
     }
 
-    private void sendCommand(JSONObject sendData){
+    private void send(ServerClient client, String message) {
         new Thread(() -> {
-            game.acceptComand(sendData);
-            final String name= (String) sendData.get("player");
+            final byte[] temp = message.getBytes();
+            DatagramPacket packet = new DatagramPacket(temp, temp.length, client.getAddress(), client.getPort());
+            try {
+                socket.send(packet);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void sendCommand(JSONObject sendData) {
+        new Thread(() -> {
+            if(game.acceptComand(sendData)) step++;
+            else return;
+            final String name = (String) sendData.get("player");
             for (ServerClient i : clients) {
-                if(!i.getName().equals(name))
-                    send(i,sendData);
+                if (!i.getName().equals(name))
+                    send(i, sendData);
             }
 
         }).start();
     }
 
-    public void stopServer(){
-        this.running=false;
+    public void stopServer() {
+        this.running = false;
+    }
+
+    private void synchronization() {
+        new Thread(() -> {
+            try {
+                while (running) {
+                    Thread.sleep(10000);
+                    if (clients.size() > 0) {
+                        for (ServerClient o : clients) {
+                            send(o, syncRequest);
+                        }
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, "sync").start();
     }
 
     public static void main(String[] args) {
-         new Server(new Game(new Map(8,8)));
+        new Server(new Game(new Map(8, 8)));
     }
 
 }

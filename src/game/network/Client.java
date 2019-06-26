@@ -22,6 +22,7 @@ public class Client {
     private boolean connect = false;
     private Player player;
     private JSONParser parser = new JSONParser();
+    private int step=0;
     private final String requstMap="{\"json message\":\"request\",\"type\":\"map\"}";
     private final String requestGroup="{\"json message\":\"request\",\"type\":\"group\"}";
 
@@ -54,7 +55,7 @@ public class Client {
 
     private void receive() {
         Runnable runnable = () -> {
-            int step=0; //debug
+
             while (running) {
                 byte[] data = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(data, data.length);
@@ -68,7 +69,7 @@ public class Client {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                    step++;
+
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {
@@ -95,7 +96,13 @@ public class Client {
 
                                 break;
 
-                            default:
+                            case "syn":
+                                if ("request".equals(jsonPacket.get("type"))) {
+                                    JSONObject mess=new JSONObject();
+                                    mess.put("json message","syn");
+                                    mess.put("step",step);
+                                    send(mess.toJSONString());
+                                }
                                 break;
                         }
 
