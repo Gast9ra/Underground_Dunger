@@ -36,7 +36,6 @@ Json for Game: port:15666
 // type: request
 
 //type: answer
-"player": name
 "step": number
 
 //request

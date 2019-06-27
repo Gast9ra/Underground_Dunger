@@ -103,9 +103,8 @@ public class Server {
                             case "syn":
                                 if ("answer".equals(jsonPacket.get("type"))) {
                                    if(Integer.parseInt(jsonPacket.get("step").toString()) == step);
-                                   else {
-                                       sendToIP(packet.getAddress(), game.mapInJSON());
-                                   }
+                                   else sendToIP(packet.getAddress(), game.mapInJSON());
+
                                 }
                                 break;
                         }
