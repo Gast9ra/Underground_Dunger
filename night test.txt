@@ -1,0 +1,202 @@
+"C:\Program Files\Java\jdk-10.0.2\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.7\lib\idea_rt.jar=61350:C:\Program Files\JetBrains\IntelliJ IDEA 2018.2.7\bin" -Dfile.encoding=UTF-8 -classpath "C:\Users\Gast9ra\IdeaProjects\Underground Dunger\out\production\Underground Dunger;C:\Мои мои документы\проги\Библиотеки\json-simple-1.1.1.jar" sample.Main
+true
+Server started
+{"json message":"connect","name":"fer"}
+/127.0.0.1:56342
+{"json message":"request","type":"map"}
+/127.0.0.1:56342
+{"json message":"request","type":"group"}
+/127.0.0.1:56342
+Unexpected token END OF FILE at position 0.
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:257)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
+	at game.network.Client.lambda$receive$0(Client.java:75)
+json not right
+	at java.base/java.lang.Thread.run(Thread.java:844)
+json not right
+java.lang.NullPointerException
+	at game.network.Client.lambda$receive$0(Client.java:77)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+      
+      
+      
+{"json message":"command","command":"up","player":"fer"}
+      
+      
+      
+
+/127.0.0.1:56342
+Exception in thread "Thread-22" java.lang.IndexOutOfBoundsException: Index -1 out-of-bounds for length 16
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:440)
+	at game.Map.getCell(Map.java:72)
+	at game.Game.up(Game.java:57)
+	at game.Game.acceptComand(Game.java:205)
+	at game.network.Server.lambda$sendCommand$5(Server.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+      
+      
+      
+      
+      
+      
+
+{"json message":"command","command":"down","player":"fer"}
+/127.0.0.1:56342
+      
+      
+      
+      
+{"json message":"command","command":"right","player":"fer"}
+      
+      
+
+/127.0.0.1:56342
+      
+      
+      
+      
+      
+      
+
+{"json message":"command","command":"left","player":"fer"}
+/127.0.0.1:56342
+Exception in thread "Thread-30" java.lang.IndexOutOfBoundsException: Index -1 out-of-bounds for length 16
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:440)
+	at game.Map.getCell(Map.java:72)
+	at game.Game.left(Game.java:71)
+	at game.Game.acceptComand(Game.java:211)
+	at game.network.Server.lambda$sendCommand$5(Server.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+      
+      
+      
+      
+      
+      
+
+{"json message":"command","command":"up","player":"fer"}
+/127.0.0.1:56342
+Exception in thread "Thread-32" java.lang.IndexOutOfBoundsException: Index -1 out-of-bounds for length 16
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:440)
+	at game.Map.getCell(Map.java:72)
+	at game.Game.up(Game.java:57)
+	at game.Game.acceptComand(Game.java:205)
+	at game.network.Server.lambda$sendCommand$5(Server.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+      
+      
+      
+      {"json message":"command","command":"down","player":"fer"}
+
+      
+      
+
+/127.0.0.1:56342
+      
+      
+      
+      
+{"json message":"command","command":"up","player":"fer"}
+      
+      
+
+/127.0.0.1:56342
+Exception in thread "Thread-36" java.lang.IndexOutOfBoundsException: Index -1 out-of-bounds for length 16
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:440)
+	at game.Map.getCell(Map.java:72)
+	at game.Game.up(Game.java:57)
+	at game.Game.acceptComand(Game.java:205)
+	at game.network.Server.lambda$sendCommand$5(Server.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+      
+      
+      
+      
+      
+      
+
+{"json message":"command","command":"down","player":"fer"}
+/127.0.0.1:56342
+      
+      
+      
+      
+      
+      
+
+{"json message":"command","command":"up","player":"fer"}
+/127.0.0.1:56342
+Exception in thread "Thread-40" java.lang.IndexOutOfBoundsException: Index -1 out-of-bounds for length 16
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:440)
+	at game.Map.getCell(Map.java:72)
+	at game.Game.up(Game.java:57)
+	at game.Game.acceptComand(Game.java:205)
+	at game.network.Server.lambda$sendCommand$5(Server.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+      
+      
+      
+      
+      
+      
+
+{"json message":"command","command":"left","player":"fer"}
+/127.0.0.1:56342
+Exception in thread "Thread-42" java.lang.IndexOutOfBoundsException: Index -1 out-of-bounds for length 16
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:372)
+	at java.base/java.util.ArrayList.get(ArrayList.java:440)
+	at game.Map.getCell(Map.java:72)
+	at game.Game.left(Game.java:71)
+	at game.Game.acceptComand(Game.java:211)
+	at game.network.Server.lambda$sendCommand$5(Server.java:196)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+{"json message":"syn","step":0}
+/127.0.0.1:56342
+
+Process finished with exit code -1

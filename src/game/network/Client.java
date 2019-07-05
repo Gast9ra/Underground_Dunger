@@ -23,6 +23,7 @@ public class Client {
     private Player player;
     private JSONParser parser = new JSONParser();
     private int step=0;
+    //const message is more fast for use JsonObject
     private final String requstMap="{\"json message\":\"request\",\"type\":\"map\"}";
     private final String requestGroup="{\"json message\":\"request\",\"type\":\"group\"}";
 
@@ -51,6 +52,7 @@ public class Client {
         }
         return true;
     }
+
 
 
     private void receive() {
@@ -172,5 +174,37 @@ public class Client {
 
     public Game getGame() {
         return game;
+    }
+
+    public void up(){
+        JSONObject message=new JSONObject();
+        message.put("json message","command");
+        message.put("command","up");
+        message.put("player",player.getName());
+        send(message.toJSONString());
+    }
+
+    public void left(){
+        JSONObject message=new JSONObject();
+        message.put("json message","command");
+        message.put("command","left");
+        message.put("player",player.getName());
+        send(message.toJSONString());
+    }
+
+    public void right(){
+        JSONObject message=new JSONObject();
+        message.put("json message","command");
+        message.put("command","right");
+        message.put("player",player.getName());
+        send(message.toJSONString());
+    }
+
+    public void down(){
+        JSONObject message=new JSONObject();
+        message.put("json message","command");
+        message.put("command","down");
+        message.put("player",player.getName());
+        send(message.toJSONString());
     }
 }

@@ -6,12 +6,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="470.0" maxWidth="720.0" minHeight="470.0" minWidth="720.0"
-            prefHeight="470.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/2.2" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    <Pane layoutY="7.0" prefHeight="470.0" prefWidth="720.0">
-        <Button layoutX="650.0" layoutY="14.0" mnemonicParsing="false" onAction="#connect" text="Connect"/>
-        <TextField fx:id="textIPConnect" layoutX="440.0" layoutY="13.0" prefWidth="200.0"/>
-        <Label fx:id="textForConnect" layoutX="650.0" layoutY="41.0" prefWidth="64.0" text="not connect"/>
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="734.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+  <children>
+    <Pane onKeyPressed="#keyN" prefHeight="470.0" prefWidth="734.0001220703125">
+      <children>
+        <Label fx:id="textForConnect" layoutX="650.0" layoutY="56.0" prefWidth="64.0" text="not connect" />
+        <TextField fx:id="textIPConnect" layoutX="531.0" layoutY="38.0" prefWidth="111.0" />
+        <Button layoutX="650.0" layoutY="28.0" mnemonicParsing="false" onAction="#connect" text="Connect" />
+        <Button layoutX="642.0" layoutY="94.0" mnemonicParsing="false" onAction="#startServer" text="Start server" />
+        <Label layoutX="521.0" layoutY="41.0" text="IP" />
+        <TextField fx:id="textName" layoutX="442.0" layoutY="13.0" prefWidth="200.0" />
+        <Label layoutX="410.0" layoutY="16.0" text="Name" />
+      </children>
     </Pane>
+  </children>
 </AnchorPane>

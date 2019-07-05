@@ -42,8 +42,8 @@ public class TestNet {
 //        a.put("player",g);
 //        System.out.println(a.toJSONString());
         JSONObject p=new JSONObject();
-        p.put("json message","syn");
-        p.put("type","request");
+        p.put("json message","command");
+        p.put(" "," ");
         System.out.println(p.toJSONString());
     }
 

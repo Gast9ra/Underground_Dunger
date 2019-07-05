@@ -33,20 +33,20 @@ public class Main extends Application {
         primaryStage.show();
         System.out.println(biz.addPlayerInGroup(new Player("test", 1, 1)));
 
-        scene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.UP) {
-                biz.up(0);
-            } else if (e.getCode() == KeyCode.LEFT) {
-                biz.left(0);
-            } else if (e.getCode() == KeyCode.RIGHT) {
-                biz.right(0);
-            } else if (e.getCode() == KeyCode.DOWN) {
-                biz.down(0);
-            }
-
-            biz.drowMap();
-
-        });
+//        scene.setOnKeyPressed(e -> {
+//            if (e.getCode() == KeyCode.W) {
+//                biz.up(0);
+//            } else if (e.getCode() == KeyCode.A) {
+//                biz.left(0);
+//            } else if (e.getCode() == KeyCode.D) {
+//                biz.right(0);
+//            } else if (e.getCode() == KeyCode.S) {
+//                biz.down(0);
+//            }
+//
+//            biz.drowMap();
+//
+//        });
 
     }
 
