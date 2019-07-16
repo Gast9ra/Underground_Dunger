@@ -78,7 +78,7 @@ public class Server {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024 len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                    System.out.println(message);
+                    System.out.println("Server"+message);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
 
                     if (jsonPacket != null)
@@ -193,7 +193,10 @@ public class Server {
 
     private void sendCommand(JSONObject sendData) {
         new Thread(() -> {
-            if(game.acceptComand(sendData)) step++;
+            if(game.acceptComand(sendData)) {
+                step++;
+                System.out.println(step);
+            }
             else return;
             final String name = (String) sendData.get("player");
             for (ServerClient i : clients) {

@@ -22,15 +22,16 @@ public class Client {
     private boolean connect = false;
     private Player player;
     private JSONParser parser = new JSONParser();
-    private int step=0;
+    private int step = 0;
+    private int playerNum;
     //const message is more fast for use JsonObject
-    private final String requstMap="{\"json message\":\"request\",\"type\":\"map\"}";
-    private final String requestGroup="{\"json message\":\"request\",\"type\":\"group\"}";
+    private final String requstMap = "{\"json message\":\"request\",\"type\":\"map\"}";
+    private final String requestGroup = "{\"json message\":\"request\",\"type\":\"group\"}";
 
 
     public Client(String address, String name) {
         this.player = new Player(name);
-        this.game=new Game();
+        this.game = new Game();
         if (openConnection(address)) {
             this.running = true;
             receive();
@@ -54,7 +55,6 @@ public class Client {
     }
 
 
-
     private void receive() {
         Runnable runnable = () -> {
 
@@ -70,8 +70,10 @@ public class Client {
                 try {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024len
+                    //System.out.println("CLient not sub="+message);
+                    //need check message }
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-
+                    System.out.println("CLient" + message);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {
@@ -100,18 +102,19 @@ public class Client {
 
                             case "syn":
                                 if ("request".equals(jsonPacket.get("type"))) {
-                                    JSONObject mess=new JSONObject();
-                                    mess.put("json message","syn");
-                                    mess.put("step",step);
+                                    JSONObject mess = new JSONObject();
+                                    mess.put("json message", "syn");
+                                    mess.put("step", step);
                                     send(mess.toJSONString());
                                 }
                                 break;
                         }
 
-                } catch (NullPointerException|ParseException e) {
+                } catch (NullPointerException | ParseException e) {
                     e.printStackTrace();
                     System.out.println("json not right");
                 }
+                parser.reset();
             }
         };
 
@@ -149,26 +152,29 @@ public class Client {
     //need test
     private void addGroupJson(JSONObject data) {
         game.delAllwhithout(player.getName());
+        if (data.get("groupNull").equals("y")) return;
         JSONArray group = (JSONArray) data.get("group");
         try {
             for (Object o : group) {
                 String name = (String) ((JSONObject) o).get("name");
                 String[] ordinate = ((String) ((JSONObject) o).get("pos")).split(" ");
                 if (name != null && ordinate.length == 2) {
-                    game.addPlayerInGroup(new Player(name,new Point(Integer.parseInt(ordinate[0])
-                            ,Integer.parseInt(ordinate[1]))));
+                    game.addPlayerInGroup(new Player(name, new Point(Integer.parseInt(ordinate[0])
+                            , Integer.parseInt(ordinate[1]))));
                 }
             }
+            playerNum = game.numPlayerInGroup(player.getName());
+
         } catch (NullPointerException e) {
         }
 
     }
 
-    public void requestMap(){
+    public void requestMap() {
         send(requstMap);
     }
 
-    public void requestGroup(){
+    public void requestGroup() {
         send(requestGroup);
     }
 
@@ -176,35 +182,43 @@ public class Client {
         return game;
     }
 
-    public void up(){
-        JSONObject message=new JSONObject();
-        message.put("json message","command");
-        message.put("command","up");
-        message.put("player",player.getName());
+    public void up() {
+        JSONObject message = new JSONObject();
+        message.put("json message", "command");
+        message.put("command", "up");
+        message.put("player", player.getName());
+        step++;
         send(message.toJSONString());
+        game.up(playerNum);
     }
 
-    public void left(){
-        JSONObject message=new JSONObject();
-        message.put("json message","command");
-        message.put("command","left");
-        message.put("player",player.getName());
+    public void left() {
+        JSONObject message = new JSONObject();
+        message.put("json message", "command");
+        message.put("command", "left");
+        message.put("player", player.getName());
+        step++;
         send(message.toJSONString());
+        game.left(playerNum);
     }
 
-    public void right(){
-        JSONObject message=new JSONObject();
-        message.put("json message","command");
-        message.put("command","right");
-        message.put("player",player.getName());
+    public void right() {
+        JSONObject message = new JSONObject();
+        message.put("json message", "command");
+        message.put("command", "right");
+        message.put("player", player.getName());
+        step++;
         send(message.toJSONString());
+        game.right(playerNum);
     }
 
-    public void down(){
-        JSONObject message=new JSONObject();
-        message.put("json message","command");
-        message.put("command","down");
-        message.put("player",player.getName());
+    public void down() {
+        JSONObject message = new JSONObject();
+        message.put("json message", "command");
+        message.put("command", "down");
+        message.put("player", player.getName());
+        step++;
         send(message.toJSONString());
+        game.down(playerNum);
     }
 }

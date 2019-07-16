@@ -18,6 +18,7 @@ Json for Game: port:15666
             ],
 "startPos": "X Y",
 //type group
+"groupNull":"y" //"n"
 "group":[
 {"name":name, "pos":"X Y"},
 {"name":name, "pos":"X Y"}

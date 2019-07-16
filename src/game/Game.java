@@ -15,7 +15,7 @@ public class Game {
     private Game linkGame = null;
     private Map map;
     private ArrayList<Player> group = new ArrayList<Player>();
-    private Point startPosition = new Point(0, 0);
+    private Point startPosition = new Point(  1, 1);
 
 
     public Game(Map map) {
@@ -81,14 +81,15 @@ public class Game {
     }
 
     public void drowMap() {
-        if(map==null) return;
+        if (map == null) return;
         for (int j = 0; j < map.getHeight(); j++) {
             for (int i = 0; i < map.getWidth(); i++) {
-                for (Player pl : group) {
-                    if (pl.playerThisPoint(i, j)) System.out.print(pl.getName());
-                    else
-                        System.out.print(map.getCell(j, i).getClassName());
-                }
+                if (group.size() > 0)
+                    for (Player pl : group) {
+                        if (pl.playerThisPoint(i, j)) System.out.print(pl.getName());
+                        else
+                            System.out.print(map.getCell(j, i).getClassName());
+                    }
                 System.out.print(" ");
             }
             System.out.println();
@@ -128,7 +129,7 @@ public class Game {
 
                 String[] ordinate = ((String) map.get("startPos")).split(" ");
                 setStartPosition(new Point(Integer.parseInt(ordinate[0])
-                        ,Integer.parseInt(ordinate[1])));
+                        , Integer.parseInt(ordinate[1])));
                 this.map = result;
 //                System.gc();
             }
@@ -163,7 +164,7 @@ public class Game {
         }
     }
 
-    public void delAllwhithout(String name){
+    public void delAllwhithout(String name) {
         for (Player i : group) {
             if (!i.getName().equals(name)) {
                 group.remove(i);
@@ -180,13 +181,13 @@ public class Game {
         return startPosition;
     }
 
-     public void setStartPosition(Point startPosition) {
+    public void setStartPosition(Point startPosition) {
         this.startPosition.setX(startPosition.getX());
         this.startPosition.setY(startPosition.getY());
     }
 
     public int numPlayerInGroup(String name) {
-        int result =0;
+        int result = 0;
         for (int i = 0; i < group.size(); i++) {
             if (group.get(i).getName().equals(name)) {
                 result = i;
@@ -196,7 +197,7 @@ public class Game {
         return -1;
     }
 
-    public boolean acceptComand(JSONObject command){
+    public boolean acceptComand(JSONObject command) {
         int index;
         switch ((String) command.get("command")) {
             case "up":
@@ -227,17 +228,24 @@ public class Game {
         return false;
     }
 
-    public JSONObject groupJson(){
-        JSONObject result=new JSONObject();
-        JSONArray playerGroup=new JSONArray();
-        result.put("type","group");
-        for (Player o:group) {
-            JSONObject player=new JSONObject();
-            player.put("name",o.getName());
-            player.put("pos",o.getLocation().getX()+" "+o.getLocation().getY());
-            playerGroup.add(player);
+    public JSONObject groupJson() {
+        JSONObject result = new JSONObject();
+        JSONArray playerGroup = new JSONArray();
+        result.put("json message","data");
+        result.put("type", "group");
+        if (group.size() >= 1) {
+            result.put("groupNull", "n");
+            for (Player o : group) {
+                JSONObject player = new JSONObject();
+                player.put("name", o.getName());
+                player.put("pos", o.getLocation().getX() + " " + o.getLocation().getY());
+                playerGroup.add(player);
+            }
+            result.put("group", playerGroup);
+            return result;
         }
-        result.put("group",playerGroup);
+
+        result.put("groupNull", "y");
         return result;
     }
 }

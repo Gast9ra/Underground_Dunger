@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Testservert:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Testservert_jar</output-path>
+    <root id="archive" name="Underground Dunger.jar">
+      <element id="module-output" name="Underground Dunger" />
+      <element id="extracted-dir" path="C:/Мои мои документы/проги/Библиотеки/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="library" level="project" name="json-simple-1.1.1" />
+    </root>
+  </artifact>
+</component>

@@ -2,7 +2,6 @@ package sample;
 
 import game.Game;
 import game.Map;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -27,11 +26,11 @@ public class Controller {
 
 
     public void connect() {
-        strConect(textIPConnect.getText(),textName.getText());
+        startConnect(textIPConnect.getText(),textName.getText());
 
     }
 
-    private void strConect(String address, String name){
+    private void startConnect(String address, String name){
         try {
             Thread.sleep(30);
         } catch (InterruptedException e) {
@@ -40,7 +39,7 @@ public class Controller {
 
         client = new Client(address, name);
         try {
-            Thread.sleep(20);
+            Thread.sleep(70);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -67,8 +66,8 @@ public class Controller {
     }
 
     public void startServer() {
-        Server server = new Server(new Game(new Map(16, 16)));
-        strConect("127.0.0.1",textName.getText());
+        Server server = new Server(new Game(new Map(8, 8)));
+        startConnect("127.0.0.1",textName.getText());
     }
 }
 
