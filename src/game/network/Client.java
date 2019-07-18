@@ -3,6 +3,7 @@ package game.network;
 import game.Game;
 import game.Player;
 import game.Point;
+import javafx.scene.control.Label;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -33,6 +34,16 @@ public class Client {
         this.player = new Player(name);
         this.game = new Game();
         if (openConnection(address)) {
+            this.running = true;
+            receive();
+        }
+    }
+
+    public Client(String address, String name, Label connectStatus) {
+        this.player = new Player(name);
+        this.game = new Game();
+        if (openConnection(address)) {
+            connectStatus.setText("connect");
             this.running = true;
             receive();
         }

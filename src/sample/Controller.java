@@ -20,6 +20,9 @@ public class Controller {
     @FXML
     private TextField textIPConnect;
 
+    @FXML
+    private Label map;
+
 
     Client client;
     Server server;
@@ -62,7 +65,8 @@ public class Controller {
             client.down();
         }
 
-        client.getGame().drowMap();
+//        client.getGame().drowMap();
+        map.setText(client.getGame().drowMapToString());
     }
 
     public void startServer() {

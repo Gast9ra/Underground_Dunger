@@ -15,7 +15,7 @@ public class Game {
     private Game linkGame = null;
     private Map map;
     private ArrayList<Player> group = new ArrayList<Player>();
-    private Point startPosition = new Point(  1, 1);
+    private Point startPosition = new Point(1, 1);
 
 
     public Game(Map map) {
@@ -97,6 +97,36 @@ public class Game {
         System.out.println();
 
     }
+
+    public String drowMapToString() {
+
+        if (map == null) return "";
+        StringBuilder result = new StringBuilder();
+        boolean playerOnCell;
+
+        for (int j = 0; j < map.getHeight(); j++) {
+            for (int i = 0; i < map.getWidth(); i++) {
+                playerOnCell = false;
+                if (group.size() > 0)
+                    for (Player pl : group) {
+                        if (pl.playerThisPoint(i, j)) {
+                            result.append(pl.getName());
+                            playerOnCell = true;
+                        }
+
+
+                    }
+                if (!playerOnCell) result.append(map.getCell(j, i).getClassName());
+                
+                result.append(" ");
+            }
+            result.append("\n");
+        }
+        result.append("\n");
+
+        return result.toString();
+    }
+
 
     public JSONObject mapInJSON() {
         JSONObject result = map.jsonMap();
@@ -231,7 +261,7 @@ public class Game {
     public JSONObject groupJson() {
         JSONObject result = new JSONObject();
         JSONArray playerGroup = new JSONArray();
-        result.put("json message","data");
+        result.put("json message", "data");
         result.put("type", "group");
         if (group.size() >= 1) {
             result.put("groupNull", "n");

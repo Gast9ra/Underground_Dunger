@@ -11,6 +11,7 @@
     <Pane onKeyPressed="#keyN" prefHeight="470.0" prefWidth="734.0001220703125">
       <children>
         <Label fx:id="textForConnect" layoutX="650.0" layoutY="56.0" prefWidth="64.0" text="not connect" />
+        <Label fx:id="map" layoutX="50.0" layoutY="56.0" prefWidth="64.0" text=" " />
         <TextField fx:id="textIPConnect" layoutX="531.0" layoutY="38.0" prefWidth="111.0" />
         <Button layoutX="650.0" layoutY="28.0" mnemonicParsing="false" onAction="#connect" text="Connect" />
         <Button layoutX="642.0" layoutY="94.0" mnemonicParsing="false" onAction="#startServer" text="Start server" />

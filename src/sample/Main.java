@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private Game biz = new Game(new Map(6, 6));
+    //private Game biz = new Game(new Map(6, 6));
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -31,7 +31,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, 720, 470);
         primaryStage.setScene(scene);
         primaryStage.show();
-        System.out.println(biz.addPlayerInGroup(new Player("test", 1, 1)));
+      //  System.out.println(biz.addPlayerInGroup(new Player("test", 1, 1)));
 
 //        scene.setOnKeyPressed(e -> {
 //            if (e.getCode() == KeyCode.W) {
