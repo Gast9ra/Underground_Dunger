@@ -1,5 +1,4 @@
 package game.TypesCells;
-
 import game.Game;
 import game.Map;
 import game.OriginalCell;

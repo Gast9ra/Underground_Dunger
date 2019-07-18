@@ -13,11 +13,11 @@ public class TestNet {
 //        Client tst=new Client("127.0.0.1","Ger");
 //        Thread.sleep(15);
 //        System.out.println(tst.isConnect());
-//        tst.getGame().drowMap();
+//        tst.getGame().drawMap();
 //        tst.getGame().printMap();
 //        tst.requestMap();
 //        Thread.sleep(100);
-//        tst.getGame().drowMap();
+//        tst.getGame().drawMap();
 //        tst.getGame().printMap();
 //        tst.stop();
 //        JSONObject a=new JSONObject();

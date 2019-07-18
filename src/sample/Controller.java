@@ -65,8 +65,8 @@ public class Controller {
             client.down();
         }
 
-//        client.getGame().drowMap();
-        map.setText(client.getGame().drowMapToString());
+//        client.getGame().drawMap();
+        map.setText(client.getGame().drawMapToString());
     }
 
     public void startServer() {

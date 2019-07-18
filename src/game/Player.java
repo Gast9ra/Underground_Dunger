@@ -54,4 +54,8 @@ public class Player {
     public void setHp(int hp) {
         this.hp = hp;
     }
+
+    public void setDamage(int damage){
+        hp-=damage;
+    }
 }

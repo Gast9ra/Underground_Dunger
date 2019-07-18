@@ -44,7 +44,7 @@ public class Main extends Application {
 //                biz.down(0);
 //            }
 //
-//            biz.drowMap();
+//            biz.drawMap();
 //
 //        });
 

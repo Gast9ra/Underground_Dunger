@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Game {
 
+
     //link on this class for event
     private Game linkGame = null;
     private Map map;
@@ -80,7 +81,7 @@ public class Game {
             group.get(numberPlayer).addOrdinate(1, 0);
     }
 
-    public void drowMap() {
+    public void drawMap() {
         if (map == null) return;
         for (int j = 0; j < map.getHeight(); j++) {
             for (int i = 0; i < map.getWidth(); i++) {
@@ -98,7 +99,7 @@ public class Game {
 
     }
 
-    public String drowMapToString() {
+    public String drawMapToString() {
 
         if (map == null) return "";
         StringBuilder result = new StringBuilder();
@@ -117,7 +118,7 @@ public class Game {
 
                     }
                 if (!playerOnCell) result.append(map.getCell(j, i).getClassName());
-                
+
                 result.append(" ");
             }
             result.append("\n");
@@ -277,5 +278,9 @@ public class Game {
 
         result.put("groupNull", "y");
         return result;
+    }
+
+    public Map getMap() {
+        return map;
     }
 }

@@ -1,10 +1,7 @@
 package game;
 
 import game.TypesCells.Wall;
-import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import game.network.*;
 
 
 import java.io.FileNotFoundException;
@@ -19,12 +16,12 @@ public class Main {
 
         Game game=new Game(new Map(6,6));
         game.setLinkGame(game);
-        game.drowMap();
+        game.drawMap();
         game.loadMap(m.jsonMap().toJSONString());
-        game.drowMap();
+        game.drawMap();
         game.up(0);
         game.down(0);
-        game.drowMap();
+        game.drawMap();
 
     }
 }

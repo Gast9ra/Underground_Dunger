@@ -78,7 +78,7 @@ public class Server {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024 len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                    System.out.println("Server"+message);
+                    System.out.println("Server" + message);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
 
                     if (jsonPacket != null)
@@ -94,16 +94,16 @@ public class Server {
 
                             case "request":
                                 if ("map".equals(jsonPacket.get("type")))
-                                    sendToIP(packet.getAddress(), game.mapInJSON());
+                                    sendToIP(packet.getAddress(), packet.getPort(), game.mapInJSON());
                                 if ("group".equals(jsonPacket.get("type")))
-                                    sendToIP(packet.getAddress(), game.groupJson());
+                                    sendToIP(packet.getAddress(), packet.getPort(), game.groupJson());
 
                                 break;
 
                             case "syn":
                                 if ("answer".equals(jsonPacket.get("type"))) {
-                                   if(Integer.parseInt(jsonPacket.get("step").toString()) == step);
-                                   else sendToIP(packet.getAddress(), game.mapInJSON());
+                                    if (Integer.parseInt(jsonPacket.get("step").toString()) == step) ;
+                                    else sendToIP(packet.getAddress(), packet.getPort(), game.mapInJSON());
 
                                 }
                                 break;
@@ -156,11 +156,14 @@ public class Server {
         textSend.put("status", "1");
         send(data, textSend);
 
+        for (ServerClient i: clients) {
+            send(i,game.groupJson());
+        }
     }
 
-    private void sendToIP(InetAddress address, JSONObject message) {
+    private void sendToIP(InetAddress address, int port, JSONObject message) {
         for (ServerClient o : clients) {
-            if (o.getAddress().equals(address)) {
+            if (o.getAddress().equals(address)&& o.getPort()==port) {
                 send(o, message);
                 return;
             }
@@ -193,11 +196,10 @@ public class Server {
 
     private void sendCommand(JSONObject sendData) {
         new Thread(() -> {
-            if(game.acceptComand(sendData)) {
+            if (game.acceptComand(sendData)) {
                 step++;
                 System.out.println(step);
-            }
-            else return;
+            } else return;
             final String name = (String) sendData.get("player");
             for (ServerClient i : clients) {
                 if (!i.getName().equals(name))
