@@ -45,7 +45,6 @@ public class Server {
         serverRun = new Thread(() -> {
             running = true;
             System.out.println("Server started");
-            manage();
             receive();
             synchronization();
         }, "serverRun");
@@ -53,15 +52,6 @@ public class Server {
         serverRun.start();
     }
 
-    private void manage() {
-        Runnable runnable = () -> {
-            while (running) {
-
-            }
-        };
-        Thread manage = new Thread(runnable, "manage");
-        manage.start();
-    }
 
     private void receive() {
         receive = new Thread(() -> {
@@ -78,7 +68,7 @@ public class Server {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024 len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                    System.out.println("Server" + message);
+                    //System.out.println("Server" + message);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
 
                     if (jsonPacket != null)
@@ -109,7 +99,7 @@ public class Server {
                                 break;
                         }
 
-                    System.out.println(clients.get(0).getAddress().toString() + ":" + packet.getPort());
+//                    System.out.println(clients.get(0).getAddress().toString() + ":" + packet.getPort());
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -198,7 +188,8 @@ public class Server {
         new Thread(() -> {
             if (game.acceptComand(sendData)) {
                 step++;
-                System.out.println(step);
+                game.update();
+//                System.out.println(step);
             } else return;
             final String name = (String) sendData.get("player");
             for (ServerClient i : clients) {

@@ -3,7 +3,9 @@ package game.network;
 import game.Game;
 import game.Player;
 import game.Point;
+import javafx.application.Application;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +30,7 @@ public class Client {
     //const message is more fast for use JsonObject
     private final String requstMap = "{\"json message\":\"request\",\"type\":\"map\"}";
     private final String requestGroup = "{\"json message\":\"request\",\"type\":\"group\"}";
+    private Label drawMap;
 
 
     public Client(String address, String name) {
@@ -39,9 +42,10 @@ public class Client {
         }
     }
 
-    public Client(String address, String name, Label connectStatus) {
+    public Client(String address, String name, Label connectStatus, Label map) {
         this.player = new Player(name);
         this.game = new Game();
+        this.drawMap=map;
         if (openConnection(address)) {
             connectStatus.setText("connect");
             this.running = true;
@@ -84,7 +88,7 @@ public class Client {
                     //System.out.println("CLient not sub="+message);
                     //need check message }
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                    System.out.println("CLient" + message);
+                   // System.out.println("CLient" + message);
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {
@@ -97,16 +101,19 @@ public class Client {
 
                             case "command":
                                 game.acceptComand(jsonPacket);
-
+                                //drawMap.setText(game.drawMapToString());
                                 break;
 
                             case "data":
                                 String type = (String) jsonPacket.get("type");
-                                if ("map".equals(type))
+                                if ("map".equals(type)) {
                                     game.loadMap(jsonPacket.toJSONString());
+                                    //drawMap.setText(game.drawMapToString());
+                                }
 
                                 if ("group".equals(type)) {
                                     addGroupJson(jsonPacket);
+                                    //drawMap.setText(game.drawMapToString());
                                 }
 
                                 break;
@@ -150,6 +157,7 @@ public class Client {
         });
         send.start();
     }
+
 
     public void stop() {
         this.running = false;

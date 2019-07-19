@@ -235,24 +235,28 @@ public class Game {
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) up(index);
+                update();
                 return true;
 
             case "left":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) left(index);
+                update();
                 return true;
 
             case "down":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) down(index);
+                update();
                 return true;
 
             case "right":
                 //index in group and check
                 index = numPlayerInGroup((String) command.get("player"));
                 if (index >= 0) right(index);
+                update();
                 return true;
 
         }
