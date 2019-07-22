@@ -27,7 +27,7 @@ public class Wall implements OriginalCell {
 
     @Override
     public String getClassName() {
-        return "W";
+        return new NameCells().wall;
         //return "Wall";
     }
 

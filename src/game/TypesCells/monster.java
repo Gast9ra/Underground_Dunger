@@ -3,14 +3,12 @@ package game.TypesCells;
 import game.*;
 
 public class Monster implements OriginalCell {
-    private boolean canMove;
     private Game game;
     private Map map;
     private Point position;
     private int damage = 15;
 
     public Monster(Game game, Point position) {
-        this.canMove = true;
         this.game = game;
         this.map = game.getMap();
         this.position = position;
@@ -18,7 +16,7 @@ public class Monster implements OriginalCell {
 
     @Override
     public boolean getCanMove() {
-        return canMove;
+        return true;
     }
 
     @Override
@@ -33,7 +31,7 @@ public class Monster implements OriginalCell {
 
     @Override
     public String getClassName() {
-        return "M";
+        return "џ";
 
     }
 }

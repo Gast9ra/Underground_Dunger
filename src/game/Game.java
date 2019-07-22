@@ -1,6 +1,8 @@
 package game;
 
 import game.TypesCells.EmptyCell;
+import game.TypesCells.Monster;
+import game.TypesCells.NameCells;
 import game.TypesCells.Wall;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -147,12 +149,16 @@ public class Game {
                     for (int i = 0; i < column.size(); i++) {
 
                         switch ((String) column.get(i)) {
-                            case "E":
+                            case "░":   //empty
                                 result.reloadCell(j, i, new EmptyCell());
                                 break;
 
-                            case "W":
+                            case "■":  //wall
                                 result.reloadCell(j, i, new Wall());
+                                break;
+
+                            case "џ":
+                                result.reloadCell(j, i, new Monster(linkGame,new Point(j,i)));
                                 break;
                         }
                     }

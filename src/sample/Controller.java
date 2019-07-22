@@ -59,12 +59,14 @@ public class Controller {
 
         Platform.runLater(
                 () -> {
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    map.setText(client.getGame().drawMapToString());
+
+                        try {
+                            Thread.sleep(5);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        map.setText(client.getGame().drawMapToString());
+
                 }
         );
 
