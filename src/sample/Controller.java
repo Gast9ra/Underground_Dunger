@@ -2,6 +2,8 @@ package sample;
 
 import game.Game;
 import game.Map;
+import game.Point;
+import game.TypesCells.Monster;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -52,7 +54,7 @@ public class Controller {
 
         textName.setVisible(false);
         textIPConnect.setVisible(false);
-        update();
+        //update();
     }
 
     private void update() {
@@ -60,12 +62,12 @@ public class Controller {
         Platform.runLater(
                 () -> {
 
-                        try {
-                            Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        map.setText(client.getGame().drawMapToString());
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    map.setText(client.getGame().drawMapToString());
 
                 }
         );
@@ -90,7 +92,11 @@ public class Controller {
     }
 
     public void startServer() {
-        Server server = new Server(new Game(new Map(8, 8)));
+        Map map = new Map(8, 8);
+        Game game = new Game();
+//        map.reloadCell(6, 6, new Monster(game, new Point(6, 6)));
+        game.setMap(map);
+        server = new Server(game);
         startConnect("127.0.0.1", textName.getText());
     }
 }

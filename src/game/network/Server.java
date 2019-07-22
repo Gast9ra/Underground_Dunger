@@ -68,7 +68,7 @@ public class Server {
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024 len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                    //System.out.println("Server" + message);
+                  //  System.out.println("Server" + message); //debug
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
 
                     if (jsonPacket != null)

@@ -36,6 +36,7 @@ public class Client {
     public Client(String address, String name) {
         this.player = new Player(name);
         this.game = new Game();
+        this.game.setLinkGame(this.game);
         if (openConnection(address)) {
             this.running = true;
             receive();
@@ -46,6 +47,7 @@ public class Client {
         this.player = new Player(name);
         this.game = new Game();
         this.drawMap=map;
+        this.game.setLinkGame(this.game);
         if (openConnection(address)) {
             connectStatus.setText("connect");
             this.running = true;
@@ -88,7 +90,7 @@ public class Client {
                     //System.out.println("CLient not sub="+message);
                     //need check message }
                     message = message.substring(0, message.lastIndexOf("}") + 1);
-                   // System.out.println("CLient" + message);
+                   // System.out.println("CLient" + message); //debug
                     JSONObject jsonPacket = (JSONObject) parser.parse(message); //parse json
                     if (jsonPacket != null)
                         switch ((String) jsonPacket.get("json message")) {

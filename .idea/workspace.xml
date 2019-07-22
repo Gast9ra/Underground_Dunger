@@ -7,17 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="move method and start gui">
-      <change afterPath="$PROJECT_DIR$/src/game/TypesCells/NameCells.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Underground Dunger/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Underground Dunger/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Underground Dunger/game/TypesCells/EmptyCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Underground Dunger/game/TypesCells/EmptyCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Underground Dunger/game/TypesCells/Monster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Underground Dunger/game/TypesCells/Monster.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Underground Dunger/game/TypesCells/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Underground Dunger/game/TypesCells/Wall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Underground Dunger/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Underground Dunger/sample/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/TypesCells/EmptyCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/TypesCells/EmptyCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/TypesCells/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/TypesCells/Wall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/TypesCells/monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/TypesCells/monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/network/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/network/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -97,11 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game/network/json.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            <state relative-caret-position="272">
+              <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -122,24 +114,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
+            <state relative-caret-position="81">
+              <caret line="97" column="25" lean-forward="true" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#connect#0;class#Controller#0" expanded="true" />
                 <element signature="method#startConnect#0;class#Controller#0" expanded="true" />
+                <element signature="method#update#0;class#Controller#0" expanded="true" />
                 <element signature="method#keyN#0;class#Controller#0" expanded="true" />
-                <element signature="method#startServer#0;class#Controller#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="159" column="37" lean-forward="true" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
+            <state relative-caret-position="-1576">
+              <caret line="160" column="60" selection-start-line="160" selection-start-column="60" selection-end-line="160" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Game#0;class#Game#0" expanded="true" />
@@ -158,13 +150,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/TypesCells/Monster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="method#update#0;class#Monster#0" expanded="true" />
+                <element signature="method#getClassName#0;class#Monster#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/game/network/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+            <state relative-caret-position="90">
+              <caret line="206" column="17" lean-forward="true" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Server#0;class#Server#0" expanded="true" />
+                <element signature="method#receive#0;class#Server#0" expanded="true" />
                 <element signature="method#process#0;class#Server#0" expanded="true" />
                 <element signature="method#addClient#0;class#Server#0" expanded="true" />
                 <element signature="method#sendToIP#0;class#Server#0" expanded="true" />
@@ -180,8 +186,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/game/network/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
+            <state relative-caret-position="362">
+              <caret line="197" column="16" lean-forward="true" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Client#0;class#Client#0" expanded="true" />
@@ -251,7 +257,6 @@
         <option value="$PROJECT_DIR$/src/game/Main.java" />
         <option value="$PROJECT_DIR$/src/game/network/ServerClient.java" />
         <option value="$PROJECT_DIR$/src/game/Point.java" />
-        <option value="$PROJECT_DIR$/src/game/Map.java" />
         <option value="$PROJECT_DIR$/src/game/network/TestNet.java" />
         <option value="$PROJECT_DIR$/src/game/network/NetFarTest.java" />
         <option value="$PROJECT_DIR$/src/game/network/NetFarTestServer.java" />
@@ -260,14 +265,15 @@
         <option value="$PROJECT_DIR$/src/sample/gameScene.fxml" />
         <option value="$PROJECT_DIR$/src/game/TypesCells/monster.java" />
         <option value="$PROJECT_DIR$/src/game/Player.java" />
-        <option value="$PROJECT_DIR$/src/game/network/Server.java" />
-        <option value="$PROJECT_DIR$/src/game/network/Client.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/game/TypesCells/Wall.java" />
         <option value="$PROJECT_DIR$/src/game/TypesCells/EmptyCell.java" />
         <option value="$PROJECT_DIR$/src/game/TypesCells/Monster.java" />
-        <option value="$PROJECT_DIR$/src/game/Game.java" />
         <option value="$PROJECT_DIR$/src/game/TypesCells/NameCells.java" />
+        <option value="$PROJECT_DIR$/src/game/Map.java" />
+        <option value="$PROJECT_DIR$/src/game/Game.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$PROJECT_DIR$/src/game/network/Server.java" />
+        <option value="$PROJECT_DIR$/src/game/network/Client.java" />
       </list>
     </option>
   </component>
@@ -636,6 +642,7 @@
       <workItem from="1563466490190" duration="1226000" />
       <workItem from="1563527207609" duration="5575000" />
       <workItem from="1563790159357" duration="2333000" />
+      <workItem from="1563804468908" duration="4210000" />
     </task>
     <task id="LOCAL-00001" summary="new player class">
       <created>1538651138500</created>
@@ -655,13 +662,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221797000" />
+    <option name="totallyTimeSpent" value="226007000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20323886" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.20647773" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -833,13 +840,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/network/main.java" />
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="843" column="19" selection-start-line="843" selection-start-column="19" selection-end-line="843" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Мои мои документы/проги/Библиотеки/json-simple-1.1.1.jar!/org/json/simple/parser/Yylex.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2380">
@@ -898,12 +898,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/gameScene.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Player.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -969,101 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/network/json.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#start#0;class#Main#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#connect#0;class#Controller#0" expanded="true" />
-            <element signature="method#startConnect#0;class#Controller#0" expanded="true" />
-            <element signature="method#keyN#0;class#Controller#0" expanded="true" />
-            <element signature="method#startServer#0;class#Controller#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/network/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Server#0;class#Server#0" expanded="true" />
-            <element signature="method#process#0;class#Server#0" expanded="true" />
-            <element signature="method#addClient#0;class#Server#0" expanded="true" />
-            <element signature="method#sendToIP#0;class#Server#0" expanded="true" />
-            <element signature="method#send#0;class#Server#0" expanded="true" />
-            <element signature="method#send#1;class#Server#0" expanded="true" />
-            <element signature="method#sendCommand#0;class#Server#0" expanded="true" />
-            <element signature="method#synchronization#0;class#Server#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/network/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Client#0;class#Client#0" expanded="true" />
-            <element signature="method#Client#1;class#Client#0" expanded="true" />
-            <element signature="method#openConnection#0;class#Client#0" expanded="true" />
-            <element signature="method#receive#0;class#Client#0" expanded="true" />
-            <element signature="method#send#0;class#Client#0" expanded="true" />
-            <element signature="e#5740#5741#0" expanded="true" />
-            <element signature="e#5776#5777#0" expanded="true" />
-            <element signature="e#5811#5812#0" expanded="true" />
-            <element signature="e#5841#5842#0" expanded="true" />
-            <element signature="method#addGroupJson#0;class#Client#0" expanded="true" />
-            <element signature="e#6686#6687#0" expanded="true" />
-            <element signature="e#6717#6718#0" expanded="true" />
-            <element signature="e#6751#6752#0" expanded="true" />
-            <element signature="e#6785#6786#0" expanded="true" />
-            <element signature="e#6814#6815#0" expanded="true" />
-            <element signature="e#6841#6842#0" expanded="true" />
-            <element signature="method#up#0;class#Client#0" expanded="true" />
-            <element signature="method#left#0;class#Client#0" expanded="true" />
-            <element signature="method#right#0;class#Client#0" expanded="true" />
-            <element signature="method#down#0;class#Client#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="81" column="68" selection-start-line="81" selection-start-column="68" selection-end-line="81" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Map#0;class#Map#0" expanded="true" />
-            <element signature="method#generate#0;class#Map#0" expanded="true" />
-            <element signature="e#1579#1580#0" expanded="true" />
-            <element signature="e#1631#1632#0" expanded="true" />
-            <element signature="method#jsonMap#0;class#Map#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/TypesCells/Wall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1093,17 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/TypesCells/Monster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding>
-            <element signature="method#Monster#0;class#Monster#0" expanded="true" />
-            <element signature="method#update#0;class#Monster#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/TypesCells/NameCells.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1111,10 +1005,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#start#0;class#Main#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#generate#0;class#Map#0" expanded="true" />
+            <element signature="e#1579#1580#0" expanded="true" />
+            <element signature="e#1631#1632#0" expanded="true" />
+            <element signature="method#printMap#0;class#Map#0" expanded="true" />
+            <element signature="method#jsonMap#0;class#Map#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="843" column="19" selection-start-line="843" selection-start-column="19" selection-end-line="843" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/TypesCells/Monster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="method#update#0;class#Monster#0" expanded="true" />
+            <element signature="method#getClassName#0;class#Monster#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="159" column="37" lean-forward="true" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
+        <state relative-caret-position="-1576">
+          <caret line="160" column="60" selection-start-line="160" selection-start-column="60" selection-end-line="160" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Game#0;class#Game#0" expanded="true" />
@@ -1128,6 +1066,76 @@
             <element signature="method#acceptComand#0;class#Game#0" expanded="true" />
             <element signature="method#groupJson#0;class#Game#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="97" column="25" lean-forward="true" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#connect#0;class#Controller#0" expanded="true" />
+            <element signature="method#startConnect#0;class#Controller#0" expanded="true" />
+            <element signature="method#update#0;class#Controller#0" expanded="true" />
+            <element signature="method#keyN#0;class#Controller#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/network/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="197" column="16" lean-forward="true" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Client#0;class#Client#0" expanded="true" />
+            <element signature="method#Client#1;class#Client#0" expanded="true" />
+            <element signature="method#openConnection#0;class#Client#0" expanded="true" />
+            <element signature="method#receive#0;class#Client#0" expanded="true" />
+            <element signature="method#send#0;class#Client#0" expanded="true" />
+            <element signature="e#5740#5741#0" expanded="true" />
+            <element signature="e#5776#5777#0" expanded="true" />
+            <element signature="e#5811#5812#0" expanded="true" />
+            <element signature="e#5841#5842#0" expanded="true" />
+            <element signature="method#addGroupJson#0;class#Client#0" expanded="true" />
+            <element signature="e#6686#6687#0" expanded="true" />
+            <element signature="e#6717#6718#0" expanded="true" />
+            <element signature="e#6751#6752#0" expanded="true" />
+            <element signature="e#6785#6786#0" expanded="true" />
+            <element signature="e#6814#6815#0" expanded="true" />
+            <element signature="e#6841#6842#0" expanded="true" />
+            <element signature="method#up#0;class#Client#0" expanded="true" />
+            <element signature="method#left#0;class#Client#0" expanded="true" />
+            <element signature="method#right#0;class#Client#0" expanded="true" />
+            <element signature="method#down#0;class#Client#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/network/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="206" column="17" lean-forward="true" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Server#0;class#Server#0" expanded="true" />
+            <element signature="method#receive#0;class#Server#0" expanded="true" />
+            <element signature="method#process#0;class#Server#0" expanded="true" />
+            <element signature="method#addClient#0;class#Server#0" expanded="true" />
+            <element signature="method#sendToIP#0;class#Server#0" expanded="true" />
+            <element signature="method#send#0;class#Server#0" expanded="true" />
+            <element signature="method#send#1;class#Server#0" expanded="true" />
+            <element signature="method#sendCommand#0;class#Server#0" expanded="true" />
+            <element signature="method#synchronization#0;class#Server#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/network/json.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
         </state>
       </provider>
     </entry>
