@@ -22,9 +22,12 @@ public class Monster implements OriginalCell {
     @Override
     public void update() {
         for (Player player : game.getGroup()) {
-            if (player.getLocation().equals(position)) {
+            if (player.getLocation().getX() == position.getX() &&
+                    player.getLocation().getY() == position.getY()) {
+//                System.out.println("true");
                 player.setDamage(damage);
-                map.reloadCell(position.getX(), position.getY(), new EmptyCell());
+                System.out.println(player.getHp());
+              //  map.reloadCell(position.getX(), position.getY(), new EmptyCell());
             }
         }
     }

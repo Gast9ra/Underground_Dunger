@@ -5,12 +5,16 @@ import game.Map;
 import game.Point;
 import game.TypesCells.Monster;
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import game.network.*;
+
+import java.util.concurrent.CountDownLatch;
 
 public class Controller {
 
@@ -54,23 +58,20 @@ public class Controller {
 
         textName.setVisible(false);
         textIPConnect.setVisible(false);
-        //update();
+        update();
     }
 
     private void update() {
-
-        Platform.runLater(
-                () -> {
-
+        Platform.runLater(() -> {
                     try {
-                        Thread.sleep(5);
+                        Thread.sleep(40);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     map.setText(client.getGame().drawMapToString());
-
                 }
         );
+
 
 
     }
@@ -94,8 +95,9 @@ public class Controller {
     public void startServer() {
         Map map = new Map(8, 8);
         Game game = new Game();
-//        map.reloadCell(6, 6, new Monster(game, new Point(6, 6)));
+        map.reloadCell(6, 6, new Monster(game, new Point(6, 6)));
         game.setMap(map);
+        game.setLinkGame(game);
         server = new Server(game);
         startConnect("127.0.0.1", textName.getText());
     }
