@@ -3,6 +3,7 @@ package sample;
 import game.Game;
 import game.Map;
 import game.Point;
+import game.TypesCells.Exit;
 import game.TypesCells.Monster;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
@@ -90,12 +91,14 @@ public class Controller {
 
 //        client.getGame().drawMap();
         map.setText(client.getGame().drawMapToString());
+//        System.out.println(client.getGame().isExit());
     }
 
     public void startServer() {
         Map map = new Map(8, 8);
         Game game = new Game();
         map.reloadCell(6, 6, new Monster(game, new Point(6, 6)));
+        map.reloadCell(5,1,new Exit(game, new Point(1, 5)));
         game.setMap(map);
         game.setLinkGame(game);
         server = new Server(game);

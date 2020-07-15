@@ -85,6 +85,7 @@ public class Client {
                 }
 
                 try {
+                    if(game.isExit()) running=false;
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024len
                     //System.out.println("CLient not sub="+message);
@@ -102,6 +103,9 @@ public class Client {
                                 break;
 
                             case "command":
+//                                if(((String) jsonPacket.get("command")).equals("ex") ) {
+//                                    running=false;
+//                                }
                                 game.acceptComand(jsonPacket);
                                 //drawMap.setText(game.drawMapToString());
                                 break;
@@ -172,7 +176,7 @@ public class Client {
 
     //need test
     private void addGroupJson(JSONObject data) {
-        game.delAllwhithout(player.getName());
+        //game.delAllwhithout(player.getName());
         if (data.get("groupNull").equals("y")) return;
         JSONArray group = (JSONArray) data.get("group");
         try {

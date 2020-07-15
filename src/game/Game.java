@@ -1,9 +1,6 @@
 package game;
 
-import game.TypesCells.EmptyCell;
-import game.TypesCells.Monster;
-import game.TypesCells.NameCells;
-import game.TypesCells.Wall;
+import game.TypesCells.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,6 +16,7 @@ public class Game {
     private Map map;
     private ArrayList<Player> group = new ArrayList<Player>();
     private Point startPosition = new Point(1, 1);
+    private boolean exit=false;
 
 
     public Game(Map map) {
@@ -160,6 +158,10 @@ public class Game {
                             case "џ":
                                 result.reloadCell(j, i, new Monster(linkGame,new Point(j,i)));
                                 break;
+
+                            case "◘":
+                                result.reloadCell(j, i, new Exit(linkGame,new Point(j,i)));
+                                break;
                         }
                     }
                 }
@@ -201,7 +203,7 @@ public class Game {
         }
     }
 
-    public void delAllwhithout(String name) {
+    public void delAllWhithOut(String name) {
         for (Player i : group) {
             if (!i.getName().equals(name)) {
                 group.remove(i);
@@ -265,6 +267,10 @@ public class Game {
                 update();
                 return true;
 
+            case "ex":
+                index = numPlayerInGroup((String) command.get("player"));
+
+                return true;
         }
         return false;
     }
@@ -296,5 +302,13 @@ public class Game {
 
     public void setMap(Map map) {
         this.map = map;
+    }
+
+    public boolean isExit() {
+        return exit;
+    }
+
+    public void setExit(boolean exit) {
+        this.exit = exit;
     }
 }

@@ -29,6 +29,9 @@ Json for Game: port:15666
 "command": "up"
 "player": "1"
 
+"command": "ex"
+"player": "1"
+
 //connect message
 "name": str name //to server
 "status": "1" or "0" //to client

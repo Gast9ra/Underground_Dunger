@@ -66,6 +66,7 @@ public class Server {
                 }
 
                 try {
+                    if(game.isExit()) running=false;
                     String message = new String(packet.getData());
                     //because byte mass 1024 and in str mass 1024 len
                     message = message.substring(0, message.lastIndexOf("}") + 1);
@@ -222,8 +223,8 @@ public class Server {
         }, "sync").start();
     }
 
-    public static void main(String[] args) {
-        new Server(new Game(new Map(8, 8)));
-    }
+//    public static void main(String[] args) {
+//        new Server(new Game(new Map(8, 8)));
+//    }
 
 }
